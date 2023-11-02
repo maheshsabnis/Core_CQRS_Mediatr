@@ -5,8 +5,6 @@ namespace Core_CQRS_Mediatr.Models;
 
 public partial class ProductInfo
 {
-    public int ProductRecordId { get; set; }
-
     public string ProductId { get; set; } = null!;
 
     public string ProductName { get; set; } = null!;

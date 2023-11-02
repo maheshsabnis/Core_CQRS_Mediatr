@@ -1,3 +1,4 @@
+using Core_CQRS_Mediatr.CustomMIddlewares;
 using Core_CQRS_Mediatr.Models;
 using Core_CQRS_Mediatr.Services;
 using MediatR;
@@ -29,8 +30,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+// app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseErrorExtender();
 
 app.MapControllers();
 

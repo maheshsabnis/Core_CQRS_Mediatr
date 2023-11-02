@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Core_CQRS_Mediatr.Commands
 {
-    public class DeleteProductInfoCommand : IRequest<ResponseObject<ProductInfo>>
+    public class DeleteProductInfoCommand : IRequest<ResponseRecord<ProductInfo>>
     {
         public string Id { get; set; }
 

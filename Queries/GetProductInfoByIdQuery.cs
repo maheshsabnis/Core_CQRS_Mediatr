@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Core_CQRS_Mediatr.Queries
 {
-    public class GetProductInfoByIdQuery: IRequest<ResponseObject<ProductInfo>>
+    public class GetProductInfoByIdQuery: IRequest<ResponseRecord<ProductInfo>>
     {
         public string? Id { get; set; }
     }

@@ -17,15 +17,12 @@ public partial class CompanyContext : DbContext
 
     public virtual DbSet<ProductInfo> ProductInfos { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Company;Integrated Security=SSPI;TrustServerCertificate=True");
-
+     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ProductInfo>(entity =>
         {
-            entity.HasKey(e => e.ProductId).HasName("PK__ProductI__B40CC6CDFF4EAA77");
+            entity.HasKey(e => e.ProductId).HasName("PK__ProductI__B40CC6CDB3FD2399");
 
             entity.ToTable("ProductInfo");
 
@@ -43,7 +40,6 @@ public partial class CompanyContext : DbContext
             entity.Property(e => e.ProductName)
                 .HasMaxLength(200)
                 .IsUnicode(false);
-            entity.Property(e => e.ProductRecordId).ValueGeneratedOnAdd();
             entity.Property(e => e.Tax)
                 .HasComputedColumnSql("([BasePrice]*(0.2))", false)
                 .HasColumnType("numeric(20, 1)");

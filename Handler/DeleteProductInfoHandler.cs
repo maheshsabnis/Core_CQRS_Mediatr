@@ -5,19 +5,19 @@ using MediatR;
 
 namespace Core_CQRS_Mediatr.Handler
 {
-    public class DeleteProductInfoHandler : IRequestHandler<DeleteProductInfoCommand, ResponseObject<ProductInfo>>
+    public class DeleteProductInfoHandler : IRequestHandler<DeleteProductInfoCommand, ResponseRecord<ProductInfo>>
     {
 
-        IDataAccessService<ProductInfo, string> _ProductInfoService;
+        IDataAccessService<ProductInfo, string> ProductInfoService;
 
-        public DeleteProductInfoHandler(IDataAccessService<ProductInfo, string> ProductInfoService)
+        public DeleteProductInfoHandler(IDataAccessService<ProductInfo, string> productInfoService)
         {
-            _ProductInfoService = ProductInfoService;
+            ProductInfoService = productInfoService;
         }
 
-        public async Task<ResponseObject<ProductInfo>> Handle(DeleteProductInfoCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseRecord<ProductInfo>> Handle(DeleteProductInfoCommand request, CancellationToken cancellationToken)
         {
-            return await _ProductInfoService.DeleteAsync(request.Id);
+            return await ProductInfoService.DeleteAsync(request.Id);
         }
     }
 }

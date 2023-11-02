@@ -2,7 +2,6 @@ USE [Company]
 GO
 
  
-
 CREATE TABLE [dbo].[ProductInfo](
 	[ProductRecordId] [int] IDENTITY(1,1) NOT NULL,
 	[ProductId] [char](20) Primary Key,

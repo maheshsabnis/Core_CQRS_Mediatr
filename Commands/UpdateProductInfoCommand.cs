@@ -3,13 +3,13 @@ using MediatR;
 
 namespace Core_CQRS_Mediatr.Commands
 {
-    public class UpdateProductInfoCommand : IRequest<ResponseObject<ProductInfo>>
+    public class UpdateProductInfoCommand : IRequest<ResponseRecord<ProductInfo>>
     {
-        public ProductInfo productInfo { get; set; }
+        public ProductInfo ProductInfo { get; set; }
 
         public UpdateProductInfoCommand(ProductInfo product)
         {
-            productInfo = product;
+            ProductInfo = product;
         }
     }
 }

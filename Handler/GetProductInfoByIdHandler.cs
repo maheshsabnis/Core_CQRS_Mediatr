@@ -5,19 +5,19 @@ using MediatR;
 
 namespace Core_CQRS_Mediatr.Handler
 {
-    public class GetProductInfoByIdHandler : IRequestHandler<GetProductInfoByIdQuery, ResponseObject<ProductInfo>>
+    public class GetProductInfoByIdHandler : IRequestHandler<GetProductInfoByIdQuery, ResponseRecord<ProductInfo>>
     {
 
-        IDataAccessService<ProductInfo, string> _ProductInfoService;
+        IDataAccessService<ProductInfo, string> ProductInfoService;
 
-        public GetProductInfoByIdHandler(IDataAccessService<ProductInfo, string> ProductInfoService)
+        public GetProductInfoByIdHandler(IDataAccessService<ProductInfo, string> productInfoService)
         {
-            _ProductInfoService = ProductInfoService;
+            ProductInfoService = productInfoService;
         }
 
-        public async Task<ResponseObject<ProductInfo>> Handle(GetProductInfoByIdQuery request, CancellationToken cancellationToken)
+        public async Task<ResponseRecord<ProductInfo>> Handle(GetProductInfoByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _ProductInfoService.GetByIdAsync(request.Id);
+            return await ProductInfoService.GetByIdAsync(request.Id);
         }
     }
 }

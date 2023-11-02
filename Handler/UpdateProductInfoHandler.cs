@@ -5,18 +5,18 @@ using MediatR;
 
 namespace Core_CQRS_Mediatr.Handler
 {
-    public class UpdateProductInfoHandler : IRequestHandler<UpdateProductInfoCommand, ResponseObject<ProductInfo>>
+    public class UpdateProductInfoHandler : IRequestHandler<UpdateProductInfoCommand, ResponseRecord<ProductInfo>>
     {
-        IDataAccessService<ProductInfo,string> _ProductInfoService;
+        IDataAccessService<ProductInfo,string> ProductInfoService;
 
-        public UpdateProductInfoHandler(IDataAccessService<ProductInfo, string> ProductInfoService)
+        public UpdateProductInfoHandler(IDataAccessService<ProductInfo, string> productInfoService)
         {
-            _ProductInfoService = ProductInfoService;
+            ProductInfoService = productInfoService;
         }
 
-        public async Task<ResponseObject<ProductInfo>> Handle(UpdateProductInfoCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseRecord<ProductInfo>> Handle(UpdateProductInfoCommand request, CancellationToken cancellationToken)
         {
-            return await _ProductInfoService.UpdateAsync(request.productInfo.ProductId, request.productInfo);
+            return await ProductInfoService.UpdateAsync(request.ProductInfo.ProductId, request.ProductInfo);
         }
     }
 }
