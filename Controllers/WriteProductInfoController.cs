@@ -39,12 +39,12 @@ namespace Core_CQRS_Mediatr.Controllers
         public async Task<IActionResult> Put(string id, ProductInfoViewModel product)
         {
          
-            if (String.IsNullOrWhiteSpace(id))
+            if (String.IsNullOrEmpty(id))
                 throw new Exception($"The Id={id} value is invalid");
             if (!ModelState.IsValid)
                 throw new Exception(GetModelErrorMessagesHelper(ModelState));
             if (!id.Equals(product.ProductId))
-                throw new Exception($"The update request cannot be processed because the data mismatched");
+                throw new Exception($"The update request cannot be processed because the provided data is mismatched");
             ProductInfo prd = Mapper.Map<ProductInfo>(product);
             var response = await Mediator.Send(new UpdateProductInfoCommand(prd));
             if (!response.IsSuccess)
@@ -56,7 +56,7 @@ namespace Core_CQRS_Mediatr.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            if(String.IsNullOrWhiteSpace(id))
+            if(String.IsNullOrEmpty(id))
                 throw new Exception($"The Id={id} value is invalid");
             var response = await Mediator.Send(new DeleteProductInfoCommand(id));
             if (!response.IsSuccess)

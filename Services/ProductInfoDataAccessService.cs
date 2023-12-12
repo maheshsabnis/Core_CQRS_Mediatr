@@ -21,26 +21,19 @@ namespace Core_CQRS_Mediatr.Services
 
         async Task<ResponseRecord<ProductInfo>> IDataAccessService<ProductInfo, string>.CreateAsync(ProductInfo entity)
         {
-            //try
-            //{
-              
+             
                 var result = await Ctx.ProductInfos.AddAsync(entity);
                 await Ctx.SaveChangesAsync();
                 ResponseRecord.Record = result.Entity;
                 ResponseRecord.Message = "Record is Added Successfully.";
                 ResponseRecord.IsSuccess = true;
                 return ResponseRecord;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+           
         }
 
         async Task<ResponseRecord<ProductInfo>> IDataAccessService<ProductInfo, string>.DeleteAsync(string id)
         {
-            //try
-            //{
+            
                 ResponseRecord.Record = await Ctx.ProductInfos.FindAsync(id);
                 if (ResponseRecord.Record is null)
                     throw new Exception($"Recortd with ProductId : {id} is not found.");
@@ -59,50 +52,35 @@ namespace Core_CQRS_Mediatr.Services
                     ResponseRecord.IsSuccess = true;
                 }
                 return ResponseRecord;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+             
         }
 
         async Task<ResponseRecords<ProductInfo>> IDataAccessService<ProductInfo, string>.GetAsync()
         {
-            //try
-            //{
+             
                 ResponseRecords.Records = await Ctx.ProductInfos.ToListAsync();
                 ResponseRecords.Message = "Record is Read Successfully.";
                 ResponseRecords.IsSuccess = true; 
                 return ResponseRecords;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+             
         }
 
         async Task<ResponseRecord<ProductInfo>> IDataAccessService<ProductInfo, string>.GetByIdAsync(string id)
         {
-            //try
-            //{
+            
                 ResponseRecord.Record = await Ctx.ProductInfos.FindAsync(id);
                 ResponseRecord.Message = "Record is Read Successfully.";
                 ResponseRecord.IsSuccess = true;
                 return ResponseRecord;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+            
         }
 
         async Task<ResponseRecord<ProductInfo>> IDataAccessService<ProductInfo, string>.UpdateAsync(string id, ProductInfo entity)
         {
-            //try
-            //{
+           
                 ResponseRecord.Record = await Ctx.ProductInfos.FindAsync(id);
                 if (ResponseRecord.Record is null)
-                    throw new Exception($"Recortd with ProductId : {id} is not found.");
+                    throw new Exception($"Record with ProductId : {id} is not found.");
 
 
                 int recordUpdated = Ctx.ProductInfos
@@ -125,11 +103,7 @@ namespace Core_CQRS_Mediatr.Services
                     ResponseRecord.IsSuccess = true;
                 }
                 return ResponseRecord;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
+             
         }
     }
 }
