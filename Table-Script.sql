@@ -1,3 +1,5 @@
+Create Database Company;
+GO
 USE [Company]
 GO
 
